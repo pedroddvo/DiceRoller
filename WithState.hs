@@ -54,12 +54,12 @@ guess False = do
 
     -- if n ==
     --
-emptyGame :: GameRecord
-emptyGame = GameRecord { rng            = 0
-                       , correctGuesses = 0
-                       , guesses        = 0 }
+emptyGame :: Int -> GameRecord
+emptyGame r = GameRecord { rng            = r
+                         , correctGuesses = 0
+                         , guesses        = 0 }
 
 game :: IO GameRecord
 game = do
     r <- roll
-    snd <$> runStateT (guess False) emptyGame
+    snd <$> runStateT (guess False) (emptyGame r)
